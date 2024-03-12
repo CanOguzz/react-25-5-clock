@@ -48,28 +48,42 @@ export const Clock = () => {
     }
   }, 1000);
 
+  const resetTimer = () => {
+    const audio = document.getElementById("beep");
+    if (!timeLeft && timingType === "Session") {
+      setTimeLeft(breakLength * 60);
+      setTimingType("BREAK");
+      audio.play();
+    }
+    if (!timeLeft && timingType === "BREAK") {
+      setTimeLeft(sessionLength * 60);
+      setTimingType("Session");
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  };
   const handlePlay = () => {
     clearTimeout(timeout);
     setPlay(!play);
   };
-//turn back
-//   const clock = () => {
-//     if(play){
-//       timeout
-//       resetTimer()
-//     }else {
-//       clearTimeout(timeout)
-//     }
-//   }
-  
+  //turn back
+  const clock = () => {
+    if (play) {
+      //timeout;
+      resetTimer();
+    } else {
+      clearTimeout(timeout);
+    }
+  };
+
   //for rerendering the clock when the play, timeout,timeleft state changes
-    useEffect(() => {
-        //clock()
-    }  , [play, timeout, timeLeft]);
+  useEffect(() => {
+    clock()
+  }, [play, timeLeft, timeout]);
 
   const { handleReset } = {};
 
-  const title = timingType === "Session" ? "Session" : "Break";
+  const title = timingType === "Session" ? "Session" : "BREAK";
   return (
     <div>
       <div className="wrapper">
