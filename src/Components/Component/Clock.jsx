@@ -76,14 +76,25 @@ export const Clock = () => {
     }
   };
 
+  const handleReset = () => {
+    setBreakLength(5);
+    setSessionLength(25);
+    setPlay(false);
+    setTimingType("SESSION");
+    setTimeLeft(25 * 60);
+    clearTimeout(timeout);
+    const audio = document.getElementById("beep");
+    audio.pause();
+    audio.currentTime = 0;
+  };
   //for rerendering the clock when the play, timeout,timeleft state changes
   useEffect(() => {
     clock()
   }, [play, timeLeft, timeout]);
 
-  const { handleReset } = {};
+  const {  } = {};
 
-  const title = timingType === "Session" ? "Session" : "BREAK";
+  const title = timingType === "SESSION" ? "SESSION" : "BREAK";
   return (
     <div>
       <div className="wrapper">
