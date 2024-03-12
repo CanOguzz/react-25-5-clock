@@ -19,14 +19,14 @@ export const Clock = () => {
   const handleSessionIncrease = () => {
     if (sessionLength < 60) {
       setSessionLength(sessionLength + 1);
-      setTimeLeft(sessionLength + 60);
+      setTimeLeft(timeLeft + 60);
     }
   };
 
   const handleSessionDecrease = () => {
     if (sessionLength > 1) {
       setSessionLength(sessionLength - 1);
-      setTimeLeft(sessionLength - 60);
+      setTimeLeft(timeLeft - 60);
     }
   };
 
