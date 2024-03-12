@@ -77,7 +77,7 @@ export const Clock = () => {
   //turn back
   const clock = () => {
     if (play) {
-      //timeout;
+        
       resetTimer();
     } else {
       clearTimeout(timeout);
