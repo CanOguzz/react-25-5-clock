@@ -47,10 +47,25 @@ export const Clock = () => {
       setTimeLeft(timeLeft - 1);
     }
   }, 1000);
+
   const handlePlay = () => {
     clearTimeout(timeout);
     setPlay(!play);
   };
+//turn back
+//   const clock = () => {
+//     if(play){
+//       timeout
+//       resetTimer()
+//     }else {
+//       clearTimeout(timeout)
+//     }
+//   }
+  
+  //for rerendering the clock when the play, timeout,timeleft state changes
+    useEffect(() => {
+        //clock()
+    }  , [play, timeout, timeLeft]);
 
   const { handleReset } = {};
 
