@@ -92,8 +92,8 @@ export const Clock = () => {
   const timeFormatter = () => {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft - minutes * 60;
-    const formatedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-    const formatedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const formatedSeconds = seconds < 10 ? "0" + seconds : seconds;
+    const formatedMinutes = minutes < 10 ? "0" + minutes : minutes;
     return `${formatedMinutes}:${formatedSeconds}`;
   };
 
