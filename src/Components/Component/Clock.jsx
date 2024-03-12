@@ -7,7 +7,7 @@ export const Clock = () => {
   const [sessionLength, setSessionLength] = React.useState(25);
   const [play, setPlay] = React.useState(false);
   const [timingType, setTimingType] = React.useState("SESSION");
-  const [timeLeft, setTimeLeft] = React.useState(sessionLength * 60);
+  const [timeLeft, setTimeLeft] =React.useState(1500);
 
   const timeout = setTimeout(() => {
     if (timeLeft && play) {
@@ -59,6 +59,14 @@ export const Clock = () => {
     setPlay(!play);
   };
 
+  const timeFormatter = () => {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft - minutes * 60;
+    const formatedSeconds = seconds < 10 ? "0" + seconds : seconds;
+    const formatedMinutes = minutes < 10 ? "0" + minutes : minutes;
+    return `${formatedMinutes}:${formatedSeconds}`;
+  };
+
   const resetTimer = () => {
     const audio = document.getElementById("beep");
     if (!timeLeft && timingType === "SESSION") {
@@ -74,10 +82,11 @@ export const Clock = () => {
     }
   };
 
-  //turn back
+  
+  //turn back nad fix this
   const clock = () => {
     if (play) {
-      //timeout;
+        //timeout 
       resetTimer();
     } else {
       clearTimeout(timeout);
@@ -89,13 +98,7 @@ export const Clock = () => {
     clock();
   }, [play, timeLeft, timeout]);
 
-  const timeFormatter = () => {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft - minutes * 60;
-    const formatedSeconds = seconds < 10 ? "0" + seconds : seconds;
-    const formatedMinutes = minutes < 10 ? "0" + minutes : minutes;
-    return `${formatedMinutes}:${formatedSeconds}`;
-  };
+  
 
   const title = timingType === "SESSION" ? "Session" : "Break";
   return (
@@ -165,5 +168,6 @@ export const Clock = () => {
     </div>
   );
 };
+
 
 export default Clock;
