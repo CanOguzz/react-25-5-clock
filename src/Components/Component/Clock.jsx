@@ -49,11 +49,7 @@ export const Clock = () => {
   }, 1000);
   const handlePlay = () => {
     clearTimeout(timeout);
-    if (play) {
-      setPlay(false);
-    } else {
-      setPlay(true);
-    }
+    setPlay(!play);
   };
 
   const { handleReset } = {};
